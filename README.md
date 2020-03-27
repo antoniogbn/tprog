@@ -1,0 +1,36 @@
+# TPROG - Telecomunications programming tool
+
+# Requirements
+
+Python 3.6 >=
+
+bcrypt==3.1.7
+bitarray==1.0.1
+certifi==2019.9.11
+cffi==1.13.2
+chardet==3.0.4
+cryptography==2.8
+enum34==1.1.6
+future==0.18.2
+idna==2.8
+lxml==4.4.1
+netmiko==2.4.2
+paramiko==2.6.0
+pyang==2.1
+pyangbind==0.8.1
+pybind11==2.4.3
+pycparser==2.19
+PyNaCl==1.3.0
+pyserial==3.4
+PyYAML==5.1.2
+regex==2019.8.19
+requests==2.22.0
+ruamel.yaml==0.16.5
+ruamel.yaml.clib==0.2.0
+scp==0.13.2
+siesta==0.5.1
+simplejson==3.16.0
+six==1.12.0
+textfsm==1.1.0
+urllib3==1.25.6
+xmltodict==0.12.0
