@@ -5,46 +5,47 @@ import sys
 import csv
 import ruamel.yaml
 import time
+import os
 
 start_time = time.time()
+DEBUG = True
 
 #internal libs
-import equipment
+import interface
+from task import task 
 from process import process
 
 global_vars = {}
 #var_return = ""
 
-#service_file = 'addPhone.yaml'
-#service_file = 'encana_setup.yaml'
-#service_file = 'update_accounts.yaml'
-#service_file = 'new_setup_cucm.yaml'
-service_file = 'add_accounts.yaml'
-#service_file = 'get_account_info.yaml'
-#service_file = 'set_inbound_vg.yaml'
-#service_file = 'new_setup.yaml'
-#service_file = 'lab_setup.yaml'
-#service_file = 'cucm_lab_setup.yaml'
-#service_file = 'set_remote_sw.yaml'
-#service_file = 'set_remote_rt.yaml'
-#service_file = 'gearbulk.yaml'
+if len(sys.argv) != 2:
+    print('ERROR : Please provide YAML file name')
+    sys.exit(1)
+else:
+    service_file = sys.argv[1]
+
+if not os.path.exists(service_file):
+    print('ERROR : YAML file not found')
+    sys.exit(1)
 
 yaml = ruamel.yaml.YAML(typ='safe')
 
 with open(service_file) as f:
     service_data = yaml.load(f)
-    for task in service_data:
-        job_params = service_data.get(task)
-        job_type   = job_params.get('type','')
-        job_action = job_params.get('action','')
-        job_return = job_params.get('return','')
-        job_data   = job_params.get('data','')
-        job_csv    = job_params.get('csv','')
+    for task_key in service_data:
 
-        job_data_list = []
-        if job_csv is not "":
-            job_data_csv = ""
-            with open(job_csv) as f:
+        my_task = task(service_data.get(task_key))
+        task_type   = my_task.data.get('type','')
+        task_action = my_task.data.get('action','')
+        task_return = my_task.data.get('return','')
+        task_data   = my_task.data.get('data','')
+        task_csv    = my_task.data.get('csv','')
+
+        task_data_list = []
+
+        if task_csv is not "":
+            task_data_csv = ""
+            with open(task_csv) as f:
                 csv_reader = csv.reader(f)
                 csv_line_count = 0
                 csv_header = []
@@ -54,43 +55,42 @@ with open(service_file) as f:
                         csv_header = row
                     else:
                         csv_line = row
-                        job_data_csv =  json.dumps(job_data)
+                        task_data_csv =  json.dumps(task_data)
                         for i in range(len(csv_header)):
-                            job_data_csv =  job_data_csv.replace('_' + csv_header[i], csv_line[i])
+                            task_data_csv =  task_data_csv.replace('_' + csv_header[i], csv_line[i])
                         # replace global_var on job string 
                         for var in global_vars:
-                            job_data_csv = job_data_csv.replace('$'+var, str(global_vars.get(var,'')))
-                        job_data_list.append(eval(job_data_csv))
+                            task_data_csv = task_data_csv.replace('$'+var, str(global_vars.get(var,'')))
+                        task_data_list.append(eval(task_data_csv))
                     csv_line_count += 1
         else:
-            job_data_list.append(job_data)
+            task_data_list.append(task_data)
 
-        exec_line = 'import %s' % (job_action)
+        #Action Model Object Importing
+        exec_line = 'import %s' % (task_action)
+        exec(exec_line)
+             
+        exec_line = 'my_yang_object = %s.%s()' % (task_action, task_action)
         exec(exec_line)
         
-        exec_line = 'my_job = %s.%s()' % (job_action, job_action)
-        exec(exec_line)
-        
-        my_process = process(my_job)
-        exec_line = 'my_equipment = equipment.%s(job_params, my_process)' % (job_type)
+        my_process = process(my_yang_object, task_data)
+
+        exec_line = 'my_equipment = interface.%s(my_task.data, my_process)' % (task_type)
         exec(exec_line)    
 
-        if job_return is not "" and job_return not in global_vars.keys():    
-            global_vars[job_return] = []
+        if task_return is not "" and task_return not in global_vars.keys():    
+            global_vars[task_return] = []
 
-        for job_data_line in job_data_list:
+        for task_data_line in task_data_list:
 
-            my_process.jobdata = job_data_line
+            my_process.task_data = task_data_line
             my_process.load_data()
-            job_res = my_equipment.execute(True)        
+            task_returned = my_equipment.execute(DEBUG)  
+          
+            if task_return is not "":    
+                global_vars[task_return] = task_returned.get(task_return,'')
 
-            if job_return is not "":    
-                global_vars[job_return] = job_res.get(job_return,'')
-                '''for k, v in job_res.items():
-                    for k1, v1 in v.items():
-                        if k1 == job_return:
-                           var_return += ' %s'%(v1)
-                           #global_vars[job_return].append(v1)'''
 
-#print(var_return)
+print(global_vars)
+
 print("--- %2.5f seconds ---" % (time.time() - start_time))
