@@ -1,9 +1,14 @@
 # TPROG - Telecomunications programming tool
 
-# Requirements
+## Requirements
 
+### Python
+```
 Python 3.6 >=
+```
 
+### Libraries
+```
 bcrypt==3.1.7
 bitarray==1.0.1
 certifi==2019.9.11
@@ -34,3 +39,4 @@ six==1.12.0
 textfsm==1.1.0
 urllib3==1.25.6
 xmltodict==0.12.0
+```
