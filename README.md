@@ -1,10 +1,13 @@
 # TPROG - Telecomunications programming tool
 
+TPROG is a tool developed using Python script language for telecomunications automation processes. 
+
+
 ## Requirements
 
 ### Python
 ```
-Python 3.6 >=
+Python 3.6.8 or higher
 ```
 
 ### Libraries
@@ -40,3 +43,19 @@ textfsm==1.1.0
 urllib3==1.25.6
 xmltodict==0.12.0
 ```
+
+## Install
+
+* Clone the project to a folder on your system :
+```
+git clone https://github.com/antoniogbn/tprog.git
+```
+
+* Install required libraries :
+```
+pip install -r requirements.txt
+```
+
+
+
+
