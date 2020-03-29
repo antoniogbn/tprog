@@ -1,11 +1,12 @@
 # TPROG - Telecomunications programming tool
 
 TPROG is a tool developed using the Python scripting language for automation of telecommunications processes on heterogenous enviroments. 
-It uses equipment´s management interfaces to interact with them, the currently versions supports follow integration technologies :
+It uses equipment´s interfaces to interact with them in order to acomplish configuration tasks, the currently version supports the follow integration technologies :
 
 * RESTful
 * SOAP
 * Terminal access
+
 
 
 ## Requirements
@@ -63,8 +64,11 @@ pip install -r requirements.txt
 
 ## Howto
 
+The steps below will guide how to use the TPROG 
+
 1. Create YANG model file :
 
+The YANG model must be based on equipment API format honouring the data hiehierarchy, once that´s created the [Pyang](https://github.com/mbj4668/pyang) is used to convert the model into python objects that will be later used on TPROG workflow;
 
 2. Prepare de YAML file with tasks data :
 
