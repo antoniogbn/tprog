@@ -1,4 +1,7 @@
-#external libs
+##################################################################
+##################################################################
+
+##external libs
 import json
 import yaml
 import sys
@@ -10,13 +13,13 @@ import os
 start_time = time.time()
 DEBUG = True
 
-#internal libs
+##internal libs
 import interface
 from task import task 
 from process import process
 
 global_vars = {}
-#var_return = ""
+##var_return = ""
 
 if len(sys.argv) != 2:
     print('ERROR : Please provide YAML file name')
@@ -31,7 +34,9 @@ if not os.path.exists(service_file):
 yaml = ruamel.yaml.YAML(typ='safe')
 
 with open(service_file) as f:
+
     service_data = yaml.load(f)
+
     for task_key in service_data:
 
         my_task = task(service_data.get(task_key))
@@ -40,31 +45,50 @@ with open(service_file) as f:
         task_return = my_task.data.get('return','')
         task_data   = my_task.data.get('data','')
         task_csv    = my_task.data.get('csv','')
-
+        print(task_data)
+        
         task_data_list = []
+        
+        ## Loading tasks
+        if task_csv is not "": ## If csv file is present on YAML file
 
-        if task_csv is not "":
             task_data_csv = ""
+
             with open(task_csv) as f:
+
                 csv_reader = csv.reader(f)
+               
                 csv_line_count = 0
                 csv_header = []
-                csv_line = []
+                csv_line   = []
+
                 for row in csv_reader:
+
+                    if not row:
+                        continue
+
                     if csv_line_count == 0:
                         csv_header = row
                     else:
                         csv_line = row
-                        task_data_csv =  json.dumps(task_data)
-                        for i in range(len(csv_header)):
-                            task_data_csv =  task_data_csv.replace('_' + csv_header[i], csv_line[i])
-                        # replace global_var on job string 
-                        for var in global_vars:
-                            task_data_csv = task_data_csv.replace('$'+var, str(global_vars.get(var,'')))
+                        task_data_csv = json.dumps(task_data)
+
+                        ##replace with csv columns values
+                        for i in range(len(csv_header)) :
+                            task_data_csv =  task_data_csv.replace('_' + csv_header[i].strip(), csv_line[i])
+
+                        ##replace global_var on job string 
+                        for var in global_vars :
+                            task_data_csv = json.loads(task_data_csv.replace('$'+var, str(global_vars.get(var,''))))
+
                         task_data_list.append(eval(task_data_csv))
+
                     csv_line_count += 1
         else:
             task_data_list.append(task_data)
+
+        #print(task_data_list)
+        #continue
 
         #Action Model Object Importing
         exec_line = 'import %s' % (task_action)
@@ -91,6 +115,5 @@ with open(service_file) as f:
                 global_vars[task_return] = task_returned.get(task_return,'')
 
 
-print(global_vars)
-
+#print(global_vars)
 print("--- %2.5f seconds ---" % (time.time() - start_time))
