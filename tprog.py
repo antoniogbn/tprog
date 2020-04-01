@@ -10,16 +10,15 @@ import ruamel.yaml
 import time
 import os
 
-start_time = time.time()
-DEBUG = True
-
 ##internal libs
 import interface
 from task import task 
 from process import process
 
+##Var initilization
+start_time = time.time()
+DEBUG = True
 global_vars = {}
-##var_return = ""
 
 if len(sys.argv) != 2:
     print('ERROR : Please provide YAML file name')
@@ -40,12 +39,13 @@ with open(service_file) as f:
     for task_key in service_data:
 
         my_task = task(service_data.get(task_key))
+
+        ## Reading YAML parameters
         task_type   = my_task.data.get('type','')
         task_action = my_task.data.get('action','')
         task_return = my_task.data.get('return','')
         task_data   = my_task.data.get('data','')
         task_csv    = my_task.data.get('csv','')
-        print(task_data)
         
         task_data_list = []
         
@@ -63,8 +63,10 @@ with open(service_file) as f:
                 csv_line   = []
 
                 for row in csv_reader:
-
-                    if not row:
+                    
+                    read_line = ''.join(row).strip()
+                    
+                    if read_line == "" or read_line.startswith('#'):
                         continue
 
                     if csv_line_count == 0:
@@ -87,7 +89,9 @@ with open(service_file) as f:
         else:
             task_data_list.append(task_data)
 
-        #print(task_data_list)
+        #DEBUG POINT
+        for row in task_data_list:
+            print(row)
         #continue
 
         #Action Model Object Importing
@@ -109,6 +113,7 @@ with open(service_file) as f:
 
             my_process.task_data = task_data_line
             my_process.load_data()
+
             task_returned = my_equipment.execute(DEBUG)  
           
             if task_return is not "":    
