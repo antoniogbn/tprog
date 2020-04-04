@@ -68,8 +68,38 @@ The steps below will guide how to use the TPROG
 1. **Create YANG model file :**
 
 The YANG model must be based on equipment API format honouring the data hiehierarchy, once that´s created the [Pyang](https://github.com/mbj4668/pyang) is used to convert the model into python objects that will be later used on TPROG workflow.
+ 
+The data modeled on the YANG file will refer strictly to that  data that will be applied on equipment using the follow YANG structure as reference :
 
-The data modeled on the YANG file will be used 
+```
+module [modulename] {
+
+    yang-version "1";
+
+    namespace "https://[yournamespaceurl]/";
+
+    prefix "[]";
+
+    typedef data {
+        type string;
+    }
+    
+    container [containername]___{
+        leaf field1___ {
+            type data;
+        }
+        leaf field2___ {
+            type data;
+        }
+        .
+        .
+        .
+        leaf field3___ {
+            type data;
+        }
+
+    }
+```
 
 2. **Prepare de YAML file with tasks data :**
 
