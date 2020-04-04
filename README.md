@@ -3,10 +3,9 @@
 TPROG is a tool developed using the Python scripting language for automation of telecommunications processes on heterogenous enviroments. 
 It uses equipment´s interfaces to interact with them in order to acomplish configuration tasks, the currently version supports the follow integration technologies :
 
-* RESTful
-* SOAP
-* Command line via terminal access
-
+* [REST](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
+* [SOAP](https://www.w3.org/TR/soap/) 
+* [SSH](https://tools.ietf.org/html/rfc4253)
 
 
 ## Requirements
@@ -52,12 +51,12 @@ xmltodict==0.12.0
 
 ## Install
 
-1. Clone the project to a folder on your system :
+1. **Clone the project to a folder on your system :**
 ```
 git clone https://github.com/antoniogbn/tprog.git
 ```
 
-2. Install required libraries :
+2. **Install required libraries :**
 ```
 pip install -r requirements.txt
 ```
@@ -66,11 +65,13 @@ pip install -r requirements.txt
 
 The steps below will guide how to use the TPROG 
 
-1. Create YANG model file :
+1. **Create YANG model file :**
 
-The YANG model must be based on equipment API format honouring the data hiehierarchy, once that´s created the [Pyang](https://github.com/mbj4668/pyang) is used to convert the model into python objects that will be later used on TPROG workflow;
+The YANG model must be based on equipment API format honouring the data hiehierarchy, once that´s created the [Pyang](https://github.com/mbj4668/pyang) is used to convert the model into python objects that will be later used on TPROG workflow.
 
-2. Prepare de YAML file with tasks data :
+The data modeled on the YANG file will be used 
+
+2. **Prepare de YAML file with tasks data :**
 
 The YAML file should have the tasks that will be performed when the TPROG is executed, it can contain one more multiple tasks entries that must follow the YAML format rules. The YAML file is read using library [Ruamel](https://pypi.org/project/ruamel.yaml/)
 
@@ -89,6 +90,7 @@ task1:
     .
     .
     .
+
 task2:
     type : 
     action : 
@@ -104,7 +106,9 @@ task2:
 ```
 
 
-3. Run TPROG in order to get tasks completed :
+
+
+3. **Run TPROG in order to get tasks completed :**
 
 
 
