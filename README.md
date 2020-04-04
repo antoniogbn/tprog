@@ -85,16 +85,16 @@ module [modulename] {
     }
     
     container [containername]___{
-        leaf field1___ {
+        leaf [fieldname1]___ {
             type data;
         }
-        leaf field2___ {
+        leaf [fieldname2]___ {
             type data;
         }
         .
         .
         .
-        leaf field3___ {
+        leaf [fieldname3]___ {
             type data;
         }
 
