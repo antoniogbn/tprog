@@ -65,7 +65,7 @@ pip install -r requirements.txt
 
 The steps below will guide how to use the TPROG 
 
-1. **Create YANG model file :**
+1. **Create tha YANG model file :**
 
 The YANG model must be based on equipment API format honouring the data hiehierarchy, once that´s created the [Pyang](https://github.com/mbj4668/pyang) is used to convert the model into python objects that will be later used on TPROG workflow.
  
@@ -101,7 +101,7 @@ module [modulename] {
     }
 ```
 
-2. **Prepare de YAML file with tasks data :**
+2. **Prepare the YAML file with tasks data :**
 
 The YAML file should have the tasks that will be performed when the TPROG is executed, it can contain one more multiple tasks entries that must follow the YAML format rules. The YAML file is read using library [Ruamel](https://pypi.org/project/ruamel.yaml/)
 
