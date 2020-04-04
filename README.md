@@ -5,7 +5,7 @@ It uses equipment´s interfaces to interact with them in order to acomplish conf
 
 * RESTful
 * SOAP
-* Terminal access
+* Command line via terminal access
 
 
 
@@ -72,11 +72,44 @@ The YANG model must be based on equipment API format honouring the data hiehiera
 
 2. Prepare de YAML file with tasks data :
 
+The YAML file should have the tasks that will be performed when the TPROG is executed, it can contain one more multiple tasks entries that must follow the YAML format rules. The YAML file is read using library [Ruamel](https://pypi.org/project/ruamel.yaml/)
+
+The service task file should have the below presented structure :
+
+```
+task1:
+    type : 
+    action : 
+    csv : 
+    uri : 
+    username : 
+    password : 
+    version : 
+    data :
+    .
+    .
+    .
+task2:
+    type : 
+    action : 
+    csv : 
+    uri : 
+    username : 
+    password : 
+    version : 
+    data :
+    .
+    .
+    .
+```
+
 
 3. Run TPROG in order to get tasks completed :
 
+
+
 ```
-python tprog.py cisco_vg.yaml
+python tprog.py tasks.yaml
 ```
 
 
