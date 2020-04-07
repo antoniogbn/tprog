@@ -8,14 +8,14 @@ It uses equipment´s interfaces to interact with them in order to acomplish conf
 * [SSH](https://tools.ietf.org/html/rfc4253)
 
 
-## Requirements
+## Requirements :
 
-### Python
+### Python :
 ```
 Python 3.6.8 or higher
 ```
 
-### Libraries
+### Libraries :
 ```
 bcrypt==3.1.7
 bitarray==1.0.1
@@ -104,7 +104,7 @@ module [modulename] {
 **Notes** : *- The module information inside of YANG model must be the same as the YANG file name also* 
            
 
-2. **Generate the python object from YANG model**
+2. **Generate the python object from YANG model :**
 
 Once the YANG file is created,  command line below should be used to generate the python object class that later will ve used on TPROG workflow :
 
@@ -147,7 +147,7 @@ task2:
     .
     .
 ```
-In the table below is showed the tags supported on YAML file also their description and if it´s mandatory accordinly with access technologies 
+In the table below is listed the tags that are supported on YAML file also their description and mandatory rule accordinly with access technologies. 
 
 
 | Tag        | Description                                                                       | REST | SOAP | SSH |
@@ -174,7 +174,9 @@ python tprog.py tasks.yaml
 ```
 
 
-## About
+## Examples :
+
+## About :
 
 The TPROG tool is the result of a MSc study currently in course with [Universidade Federal Fluminense](http://mesc.sites.uff.br/)
 
