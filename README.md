@@ -101,6 +101,9 @@ module [modulename] {
     }
 ```
 
+**Notes** : *- The module information inside of YANG model must be the same as the YANG file name also* 
+           
+
 2. **Generate the python object from YANG model**
 
 Once the YANG file is created,  command line below should be used to generate the python object class that later will ve used on TPROG workflow :
@@ -144,23 +147,23 @@ task2:
     .
     .
 ```
-Below is showed a table with tags supported on YAML file by TPROG and description of them
+In the table below is showed the tags supported on YAML file also their description and if it´s mandatory accordinly with access technologies 
 
 
-| Tag        | Description                                                                               |
-|------------| ------------------------------------------------------------------------------------------|
-|task        | Unique task idenfier                                                                      |
-|type        | Equipment access method type. currently supported  : restjson, soapaxl e ioscli           |   
-|action      | Action to be called during the process, must match with object class (YANG Model)         |
-|uri         | Logical address for webservices protocols                                                 |               
-|ip_address  | Logical address for IP protocols                                                          | 
-|version     | Equipment version                                                                         |                                               
-|device_type | Equipment type                                                                            |                                                   
-|username    | Username access                                                                           |                                                       
-|password    | Password access                                                                           |                                                           
-|csv         | CSV sub-file for batch execution                                                          |                      
-|data        | Data that will submited in the equipment                                                  |                                        
-|return      | Task return variable                                                                      | 
+| Tag        | Description                                                                       | REST | SOAP | SSH |
+|------------| ----------------------------------------------------------------------------------|------|------|-----|
+|task        | Unique task idenfier                                                              |  Y   |  Y   |  Y  | 
+|type        | Equipment access method type. currently supported  : restjson, soapaxl e ioscli   |  Y   |  Y   |  Y  | 
+|action      | Action to be called during the process, must match with object class (YANG Model) |  Y   |  Y   |  Y  | 
+|uri         | Logical address for webservices protocols                                         |  Y   |  Y   |  N  |   
+|ip_address  | Logical address for IP protocols                                                  |  N   |  N   |  Y  | 
+|version     | Equipment version                                                                 |  N   |  Y   |  N  |                                     
+|device_type | Equipment type                                                                    |  N   |  N   |  Y  |                                        
+|username    | Username access                                                                   |  N   |  Y   |  Y  |                                            
+|password    | Password access                                                                   |  N   |  Y   |  Y  |                                               
+|csv         | CSV sub-file for batch execution                                                  |  N   |  N   |  N  |          
+|data        | Data that will submited in the equipment                                          |  Y   |  Y   |  Y  |                            
+|return      | Task return variable                                                              |  N   |  N   |  N  | 
 
 
 4. **Run TPROG in order to get tasks completed :**
