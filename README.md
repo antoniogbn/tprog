@@ -146,7 +146,7 @@ task2:
 ```
 Below is showed a table with tags supported on YAML file by TPROG and description of them
 
-|------------|-------------------------------------------------------------------------------------------|
+
 | Tag        | Description                                                                               |
 |------------| ------------------------------------------------------------------------------------------|
 |task        | Unique task idenfier                                                                      |
@@ -161,7 +161,7 @@ Below is showed a table with tags supported on YAML file by TPROG and descriptio
 |csv         | CSV sub-file for batch execution                                                          |                      
 |data        | Data that will submited in the equipment                                                  |                                        
 |return      | Task return variable                                                                      | 
-| -----------| ------------------------------------------------------------------------------------------|
+
 
 4. **Run TPROG in order to get tasks completed :**
 
