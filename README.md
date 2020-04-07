@@ -171,3 +171,11 @@ python tprog.py tasks.yaml
 ```
 
 
+## About
+
+The TPROG tool is the result of a MSc study currently in course with [Universidade Federal Fluminense](http://mesc.sites.uff.br/)
+
+Authors :
+
+Antonio Garcia Brandão Neto - antoniogbn@id.uff.br
+Carlos Bazilio - carlosbazilio@id.uff.br 
