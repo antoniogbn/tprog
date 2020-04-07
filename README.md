@@ -1,4 +1,4 @@
-# TPROG - Telecomunications programming tool
+# TPROG 
 
 TPROG is a tool developed using the Python scripting language for automation of telecommunications processes on heterogenous enviroments. 
 It uses equipment´s interfaces to interact with them in order to acomplish configuration tasks, the currently version supports the follow integration technologies :
