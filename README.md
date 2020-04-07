@@ -101,7 +101,17 @@ module [modulename] {
     }
 ```
 
-2. **Prepare the YAML file with tasks data :**
+2. **Generate the python object from YANG model**
+
+Once the YANG file is created,  command line below should be used to generate the python object class that later will ve used on TPROG workflow :
+
+```
+python tprog.cyang.py [yangfilename]
+```
+
+
+
+3. **Prepare the YAML file with tasks data :**
 
 The YAML file should have the tasks that will be performed when the TPROG is executed, it can contain one more multiple tasks entries that must follow the YAML format rules. The YAML file is read using library [Ruamel](https://pypi.org/project/ruamel.yaml/)
 
@@ -134,12 +144,26 @@ task2:
     .
     .
 ```
+Below is showed a table with tags supported on YAML file by TPROG and description of them
 
+|------------|-------------------------------------------------------------------------------------------|
+| Tag        | Description                                                                               |
+|------------| ------------------------------------------------------------------------------------------|
+|task        | Unique task idenfier                                                                      |
+|type        | Equipment access method type. currently supported  : restjson, soapaxl e ioscli           |   
+|action      | Action to be called during the process, must match with object class (YANG Model)         |
+|uri         | Logical address for webservices protocols                                                 |               
+|ip_address  | Logical address for IP protocols                                                          | 
+|version     | Equipment version                                                                         |                                               
+|device_type | Equipment type                                                                            |                                                   
+|username    | Username access                                                                           |                                                       
+|password    | Password access                                                                           |                                                           
+|csv         | CSV sub-file for batch execution                                                          |                      
+|data        | Data that will submited in the equipment                                                  |                                        
+|return      | Task return variable                                                                      | 
+| -----------| ------------------------------------------------------------------------------------------|
 
-
-
-3. **Run TPROG in order to get tasks completed :**
-
+4. **Run TPROG in order to get tasks completed :**
 
 
 ```
@@ -148,4 +172,18 @@ python tprog.py tasks.yaml
 
 
 
-
+| Tag        | Description                                                                               |
+| -----------| ------------------------------------------------------------------------------------------|
+|task        | Unique task idenfier                                                               
+|type        | Tipo do método de acesso ao equipamento. métodos suportados : restjson, soapaxl e ioscli 
+|action      | Nome do método a ser chamado durante a execução da API do equipamento                    
+|uri         | Endereço lógico para métodos de acesso que utilizem protocolos webservices               
+|ip_address  | Endereço lógico para métodos de acesso que utilizem protocolo 
+|version     | Versão do equipamento que será configurado                                               
+|device_type | Tipo do equipamento  que será configurado                                                
+|username    | Usuário para acesso ao equipamento                                                       
+|password    | Senha de acesso ao equipamento                                                           
+|csv         | Sub-arquivo contendo informações para processos de execução em lote                      
+|data        | Informações que serão submetidos aos equipamentos                                        
+|return      | Variável de retorno que poderá ser utilizada nas próximas 
+| -----------| ------------------------------------------------------------------------------------------|
