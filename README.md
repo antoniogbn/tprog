@@ -177,5 +177,6 @@ The TPROG tool is the result of a MSc study currently in course with [Universida
 
 Authors :
 
-Antonio Garcia Brandão Neto - antoniogbn@id.uff.br
-Carlos Bazilio - carlosbazilio@id.uff.br 
+Antonio Garcia Brandão Neto - antoniogbn@id.uff.br (mastering)
+
+Carlos Bazilio - carlosbazilio@id.uff.br (advisor)
