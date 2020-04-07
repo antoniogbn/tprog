@@ -147,6 +147,7 @@ task2:
     .
     .
 ```
+
 In the table below is listed the tags that are supported on YAML file also their description and mandatory rule accordinly with access technologies. 
 
 
@@ -173,12 +174,25 @@ In the table below is listed the tags that are supported on YAML file also their
 python tprog.py tasks.yaml
 ```
 
-
 ## Examples :
+
+# Using TPROG with REST API :
+This example shows how to use TPROG to add customer and accounts information using REST API in a [PortaOne Softswitch](https://www.portaone.com/products/portaswitch) server.
+...
+
+
+# Using TPROG with SOAP API :
+This example shows how to use TPROG to add Phones and Numbers  information using SOAP AXL API in a [Cisco CUCM](https://www.cisco.com/c/en/us/products/unified-communications/unified-communications-manager-callmanager/index.html) server.
+...
+
+
+# Using TPROG with SSH :
+This example shows how to use TPROG to add dial-peer configuration using SSH command line instructions to a [Cisco Voice Gateway] (https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucme/srnd/design/guide/cmesrnd/gatewy.html.
+...
 
 ## About :
 
-The TPROG tool is the result of a MSc study currently in course with [Universidade Federal Fluminense](http://mesc.sites.uff.br/)
+The TPROG tool is the result of a MSc. study currently in course with [Universidade Federal Fluminense](http://mesc.sites.uff.br/)
 
 Authors :
 
