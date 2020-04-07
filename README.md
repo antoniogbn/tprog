@@ -171,19 +171,3 @@ python tprog.py tasks.yaml
 ```
 
 
-
-| Tag        | Description                                                                               |
-| -----------| ------------------------------------------------------------------------------------------|
-|task        | Unique task idenfier                                                               
-|type        | Tipo do método de acesso ao equipamento. métodos suportados : restjson, soapaxl e ioscli 
-|action      | Nome do método a ser chamado durante a execução da API do equipamento                    
-|uri         | Endereço lógico para métodos de acesso que utilizem protocolos webservices               
-|ip_address  | Endereço lógico para métodos de acesso que utilizem protocolo 
-|version     | Versão do equipamento que será configurado                                               
-|device_type | Tipo do equipamento  que será configurado                                                
-|username    | Usuário para acesso ao equipamento                                                       
-|password    | Senha de acesso ao equipamento                                                           
-|csv         | Sub-arquivo contendo informações para processos de execução em lote                      
-|data        | Informações que serão submetidos aos equipamentos                                        
-|return      | Variável de retorno que poderá ser utilizada nas próximas 
-| -----------| ------------------------------------------------------------------------------------------|
