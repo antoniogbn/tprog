@@ -189,7 +189,7 @@ This example shows how to use TPROG to add Phones and Numbers  information using
 
 
 # Using TPROG with SSH :
-This example shows how to use TPROG to add dial-peer configuration using SSH command line instructions to a [Cisco Voice Gateway] (https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucme/srnd/design/guide/cmesrnd/gatewy.html).
+This example shows how to use TPROG to add dial-peer configuration using SSH command line instructions to a [Cisco Voice Gateway](https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucme/srnd/design/guide/cmesrnd/gatewy.html) .
 
 ...
 
