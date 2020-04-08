@@ -11,9 +11,9 @@ import time
 import os
 
 ##internal libs
-import interface
-from task import task 
-from process import process
+import core.interface
+from core.task import task 
+from core.process import process
 
 ##Var initilization
 start_time = time.time()
@@ -83,27 +83,29 @@ with open(service_file) as f:
                         for var in global_vars :
                             task_data_csv = json.loads(task_data_csv.replace('$'+var, str(global_vars.get(var,''))))
 
-                        task_data_list.append(eval(task_data_csv))
+                        #task_data_list.append(eval(task_data_csv))
+                        
+                        task_data_list.append(task_data_csv)
 
                     csv_line_count += 1
         else:
             task_data_list.append(task_data)
 
         #DEBUG POINT
-        for row in task_data_list:
-            print(row)
+        #for row in task_data_list:
+        #    print(row)
         #continue
 
         #Action Model Object Importing
-        exec_line = 'import %s' % (task_action)
+        exec_line = 'import obj.%s' % (task_action)
         exec(exec_line)
              
-        exec_line = 'my_yang_object = %s.%s()' % (task_action, task_action)
+        exec_line = 'my_yang_object = obj.%s.%s()' % (task_action, task_action)
         exec(exec_line)
         
         my_process = process(my_yang_object, task_data)
 
-        exec_line = 'my_equipment = interface.%s(my_task.data, my_process)' % (task_type)
+        exec_line = 'my_equipment = core.interface.%s(my_task.data, my_process)' % (task_type)
         exec(exec_line)    
 
         if task_return is not "" and task_return not in global_vars.keys():    

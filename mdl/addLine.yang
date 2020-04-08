@@ -1,0 +1,24 @@
+module addLine {
+
+    yang-version "1";
+
+    namespace "https://localhost/tprog/";
+
+    prefix "tprog";
+
+    typedef data {
+        type string;
+    }
+    
+    container line___{
+        leaf pattern___{
+            type data;
+        }
+        leaf description___{
+            type data;
+        } 
+        leaf routePartitionName___{
+            type data;
+        }
+    }  
+}

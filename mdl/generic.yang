@@ -1,0 +1,27 @@
+module listPhone {
+
+    yang-version "1";
+
+    namespace "https://readthedocs.org/projects/hulkbuster/";
+
+    prefix "listPhone";
+
+    typedef name {
+        type string;
+    }
+    
+    container "xxx" {
+            container "zzzz" { 
+                container "xxx" {
+                leaf "aaa" {
+                    type name;
+                }
+                }
+                }
+            container "yyy" {
+                leaf "bbb" {
+                    type name;
+                }
+            } 
+    }
+}

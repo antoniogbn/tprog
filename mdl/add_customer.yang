@@ -1,0 +1,44 @@
+module add_customer {
+
+    yang-version "1";
+
+    namespace "https://localhost/tprog/";
+
+    prefix "tprog";
+
+    typedef data {
+        type string;
+    }
+
+    container auth_info___  {
+        leaf login___ {
+            type data;
+        }
+        leaf password___{
+            type data;
+        }
+    }  
+
+    container params___ {
+        container customer_info___ {
+            leaf name___ {
+                type data;            
+            }
+            
+            leaf iso_4217___{
+                type data;
+            }
+
+            leaf i_traffic_profile___{
+                type data;
+            }
+
+            leaf email___{
+                type data;
+            }
+
+        }
+    }
+   
+
+}

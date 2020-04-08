@@ -38,7 +38,7 @@ class webservice_client(interface):
 
     def execute(self, data, debug=False):
         if debug:
-            print('SENT >>>')
+            print('\n\nSENT >>>')
             print(data)      
         r = self.call_request_post(data)
         if debug:

@@ -1,0 +1,37 @@
+module get_customer_list {
+
+    yang-version "1";
+
+    namespace "https://localhost/tprog/";
+
+    prefix "tprog";
+
+    typedef login {
+        type string;
+    }
+
+    typedef password {
+        type string;
+    }
+
+    typedef i_parent {
+        type string;
+    }     
+
+    container auth_info___{
+
+        leaf login___ {
+            type login;
+        }
+
+        leaf password___{
+            type password;
+        }
+    }
+
+    container params___{
+        leaf i_parent___{
+            type i_parent; 
+            }
+    }
+}

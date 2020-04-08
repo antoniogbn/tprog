@@ -1,0 +1,51 @@
+module add_account {
+
+    yang-version "1";
+
+    namespace "https://localhost/tprog/";
+
+    prefix "tprog";
+
+    typedef data {
+        type string;
+    }
+
+    container auth_info___  {
+        leaf login___ {
+            type data;
+        }
+        leaf password___{
+            type data;
+        }
+    }  
+
+    container params___ {
+        container account_info___ {
+            leaf id___ {
+                type data;            
+            }
+            
+            leaf billing_model___{
+                type data;
+            }
+
+            leaf i_product___{
+                type data;
+            }
+
+            leaf i_customer___{
+                type data;
+            }
+
+            leaf h323_password___{
+                type data;
+            }
+
+            leaf batch_name___{
+                type data;
+            }
+        }
+    }
+   
+
+}

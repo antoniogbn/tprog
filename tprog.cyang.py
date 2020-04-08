@@ -9,7 +9,7 @@ args = parser.parse_args()
 
 model = args.model
 
-cmd_line = 'pyang -f tree ' + model + '.yang'
+cmd_line = 'pyang -f tree mdl/' + model + '.yang'
 print(cmd_line)
 os.system(cmd_line)
 
@@ -21,7 +21,7 @@ var = '%s/plugin' % (os.path.dirname(pyangbind.__file__))
 
 os.environ['PYBINDPLUGIN'] = "%s"%(var)
 
-cmd_line = 'pyang --plugindir $PYBINDPLUGIN -f pybind {model}.yang > {model}.py'.format(model=model)
+cmd_line = 'pyang --plugindir $PYBINDPLUGIN -f pybind mdl/{model}.yang > obj/{model}.py'.format(model=model)
 print(cmd_line)
 os.system(cmd_line)
 

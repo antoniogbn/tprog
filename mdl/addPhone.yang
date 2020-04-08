@@ -1,0 +1,53 @@
+module addPhone {
+
+    yang-version "1";
+
+    namespace "https://localhost/tprog/";
+
+    prefix "tprog";
+
+    typedef data {
+        type string;
+    }
+    
+    container phone___{
+        leaf name___ {
+            type data;
+        }
+        leaf description___ {
+            type data;
+        }
+        leaf product___ {
+            type data;
+        }
+        leaf class___ {
+            type data;
+        }
+        leaf protocol___ {
+            type data;
+        }
+        leaf devicePoolName___ {
+            type data;
+        }
+        container lines___{
+
+            container line___{
+
+                leaf index___{
+                    type data;
+                }
+
+                container dirn___{
+
+                    leaf pattern___{
+                        type data;
+                    }
+                    leaf routePartitionName___{
+                        type data;
+                    }
+                }
+
+            }
+        }
+    }  
+}

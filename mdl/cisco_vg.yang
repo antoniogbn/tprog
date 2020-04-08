@@ -1,0 +1,16 @@
+module cisco_vg {
+
+    yang-version "1";
+
+    namespace "https://localhost/tprog/";
+
+    prefix "tprog";
+
+    typedef data {
+        type string;
+    }
+    
+    leaf cmd_list___{
+            type data;
+        }
+}

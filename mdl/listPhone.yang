@@ -1,0 +1,26 @@
+module listPhone {
+
+    yang-version "1";
+
+    namespace "https://readthedocs.org/projects/hulkbuster/";
+
+    prefix "listPhone";
+
+    typedef data {
+        type string;
+    }
+    
+    container searchCriteria{
+        leaf name {
+            type data;
+        }
+    }
+
+    container returnedTags{
+        leaf name {
+            type data;
+        }
+       }
+    
+
+}

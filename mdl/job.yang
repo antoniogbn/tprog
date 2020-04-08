@@ -1,0 +1,35 @@
+module get-account-info {
+
+    yang-version "1";
+    namespace "https://readthedocs.org/projects/hulkbuster/";
+
+    prefix "hulkbuster";
+
+    typedef login {
+        type string;
+    }
+
+    typedef password {
+        type string;
+    }
+
+    typedef id {
+        id int64;
+    }
+
+    grouping auth_info {
+        leaf login {
+            type string;
+        }
+        leaf password {
+            type string;
+        }
+
+    grouping params {
+        leaf id {
+            type int64;
+        }
+    }
+        
+    }
+}
