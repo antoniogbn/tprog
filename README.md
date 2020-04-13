@@ -180,8 +180,82 @@ python tprog.py tasks.yaml
 
 This example shows how to use TPROG to add customer and accounts information using REST API in a [PortaOne Softswitch](https://www.portaone.com/products/portaswitch) server.
 
-...
+The both YANG files were created to serve as model to both API methods that will be called based on service API sctructure :
 
+- [add_customer](https://github.com/antoniogbn/tprog/blob/master/mdl/add_customer.yang)
+- [add_accounts](https://github.com/antoniogbn/tprog/blob/master/mdl/add_account.yang)
+
+Then the object classes were created from their respectively YANG models using the follow commands:
+
+```
+(tprog) user@localhost:/dev/tprog$ python tprog.cyang.py add_customer
+pyang -f tree mdl/add_customer.yang
+module: add_customer
+  +--rw auth_info___
+  |  +--rw login___?      data
+  |  +--rw password___?   data
+  +--rw params___
+     +--rw customer_info___
+        +--rw name___?                data
+        +--rw iso_4217___?            data
+        +--rw i_traffic_profile___?   data
+        +--rw email___?               data
+pyang --plugindir $PYBINDPLUGIN -f pybind mdl/add_customer.yang > obj/add_customer.py
+
+(tprog) user@localhost:/dev/tprog$ python tprog.cyang.py add_customer
+pyang -f tree mdl/add_customer.yang
+module: add_customer
+  +--rw auth_info___
+  |  +--rw login___?      data
+  |  +--rw password___?   data
+  +--rw params___
+     +--rw customer_info___
+        +--rw name___?                data
+        +--rw iso_4217___?            data
+        +--rw i_traffic_profile___?   data
+        +--rw email___?               data
+pyang --plugindir $PYBINDPLUGIN -f pybind mdl/add_customer.yang > obj/add_customer.py
+
+```
+
+And the object classes files were generated inside **obj** folder, then once that is completed, the next step will be to create the task YAML file, the example below shows the file with 2 tasks :
+
+```
+---
+task1:
+    type : restjson
+    action : add_customer
+    uri : https://apiserver/rest/Customer/add_customer
+    data :
+        auth_info :
+            login : "username"
+            password : "password" 
+        params :
+            customer_info:
+                name : "Telecom International"
+                iso_4217 : "USD"
+    return : i_customer
+  
+task2:
+    type : restjson
+    action : add_account
+    csv : accounts.csv
+    uri : https://apiserver/rest/Account/add_account
+    data :
+        auth_info :
+            login : "username"
+            password : "password" 
+        params :
+            account_info:
+                id: 552137525665
+                billing_model: 1
+                i_product: 1676                 
+                i_customer: $i_customer         
+                h323_password: 123456           
+                batch_name: telecomint_accounts 
+```
+
+The task1 will call the method **add_customer** to add customer information on the server and the task2 will call the method **add_account** to add the accounts posteriorly . The entry **return** present on the task1 refers to the variable returned from method called with customer key that was generated during the process and will avaiable on the task2 be used adding accounts for that recently added customer.
 
 2. **Using TPROG with SOAP API :**
 
