@@ -239,7 +239,6 @@ task1:
 task2:
     type : restjson
     action : add_account
-    csv : accounts.csv
     uri : https://apiserver/rest/Account/add_account
     data :
         auth_info :
@@ -256,6 +255,34 @@ task2:
 ```
 
 The task1 will call the method **add_customer** to add customer information on the server and the task2 will call the method **add_account** to add the accounts posteriorly . The entry **return** present on the task1 refers to the variable returned from method called with customer key that was generated during the process and will avaiable on the task2 be used adding accounts for that recently added customer.
+
+Once YAML is complete call tprog main script to execute the tasks file with below line :
+
+´´´
+python tprog.py demo1.yaml
+´´´
+
+The obteined output should be like presented below 
+
+```
+SENT >>>
+{'auth_info': '{"login": "UsernameDemo", "password": "PasswordDemo"}', 'params': '{"customer_info": {"name": "Telecom International", "iso_4217": "USD", "i_traffic_profile": "", "email": ""}}'}
+
+
+RECEIVED >>>
+{'i_customer': 6736}
+
+
+SENT >>>
+{'auth_info': '{"login": "UsernameDemo", "password": "PasswordDemo"}', 'params': '{"account_info": {"id": "552137525665", "billing_model": "1", "i_product": "1676", "i_customer": "6736", "h323_password": "abc12356", "batch_name": "telecomint_accounts"}}'}
+
+
+RECEIVED >>>
+{'i_account': 570170}
+
+--- 3.52347 seconds ---
+```
+
 
 2. **Using TPROG with SOAP API :**
 
