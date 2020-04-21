@@ -218,7 +218,7 @@ pyang --plugindir $PYBINDPLUGIN -f pybind mdl/add_customer.yang > obj/add_custom
 
 ```
 
-**note :**  *For the TPROG, the YANG files must use the presented format including "___" after the items names.*
+**note :**  *For the TPROG, the YANG files must use the presented format including "___" after the item names.*
 
 The object classes files were generated inside **obj** folder, then once that is completed, the next step will be to create the task YAML file, the example below shows the file with 2 tasks :
 
