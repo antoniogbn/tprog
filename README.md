@@ -258,11 +258,11 @@ The task1 will call the method **add_customer** to add customer information on t
 
 Once YAML is complete call tprog main script to execute the tasks file with below line :
 
-´´´
+```
 python tprog.py demo1.yaml
-´´´
+```
 
-The obteined output should be like presented below 
+The obteined output should be like presented below :
 
 ```
 SENT >>>
