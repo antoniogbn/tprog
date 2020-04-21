@@ -1,6 +1,6 @@
 # TPROG 
 
-TPROG is a tool developed using the Python scripting language for automation of telecommunications processes on heterogenous enviroments. 
+TPROG is a Python scripting based solution for automation of telecommunications processes on heterogenous enviroments. 
 It uses equipment´s interfaces to interact with them in order to acomplish configuration tasks, the currently version supports the follow integration technologies :
 
 * [REST](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
@@ -218,7 +218,9 @@ pyang --plugindir $PYBINDPLUGIN -f pybind mdl/add_customer.yang > obj/add_custom
 
 ```
 
-And the object classes files were generated inside **obj** folder, then once that is completed, the next step will be to create the task YAML file, the example below shows the file with 2 tasks :
+**note :**  * *For the TPROG,  the YANG files adopted to use the presented format including "___" after the items names.* *
+
+The object classes files were generated inside **obj** folder, then once that is completed, the next step will be to create the task YAML file, the example below shows the file with 2 tasks :
 
 ```
 ---
