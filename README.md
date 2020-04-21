@@ -230,8 +230,8 @@ task1:
     uri : https://apiserver/rest/Customer/add_customer
     data :
         auth_info :
-            login : "username"
-            password : "password" 
+            login : "UsernameDemo"
+            password : "PasswordDemo" 
         params :
             customer_info:
                 name : "Telecom International"
@@ -244,8 +244,8 @@ task2:
     uri : https://apiserver/rest/Account/add_account
     data :
         auth_info :
-            login : "username"
-            password : "password" 
+            login : "UsernameDemo"
+            password : "PasswordDemo" 
         params :
             account_info:
                 id: 552137525665
