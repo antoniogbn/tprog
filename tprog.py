@@ -41,20 +41,20 @@ with open(service_file) as f:
         my_task = task(service_data.get(task_key))
 
         ## Reading YAML parameters
-        task_type   = my_task.data.get('type','')
-        task_action = my_task.data.get('action','')
-        task_return = my_task.data.get('return','')
-        task_data   = my_task.data.get('data','')
-        task_csv    = my_task.data.get('csv','')
+        task_type     = my_task.data.get('type','')
+        task_action   = my_task.data.get('action','')
+        task_return   = my_task.data.get('return','')
+        task_data     = my_task.data.get('data','')
+        task_csv_file = my_task.data.get('csv','')
         
         task_data_list = []
         
         ## Loading tasks
-        if task_csv is not "": ## If csv file is present on YAML file
+        if task_csv_file is not "": ## If csv file is present on YAML file
 
             task_data_csv = ""
 
-            with open(task_csv) as f:
+            with open(task_csv_file) as f:
 
                 csv_reader = csv.reader(f)
                
@@ -77,19 +77,21 @@ with open(service_file) as f:
 
                         ##replace with csv columns values
                         for i in range(len(csv_header)) :
-                            task_data_csv =  task_data_csv.replace('_' + csv_header[i].strip(), csv_line[i])
+                            task_data_csv = task_data_csv.replace('_' + csv_header[i].strip(), csv_line[i])
 
                         ##replace global_var on job string 
                         for var in global_vars :
-                            task_data_csv = json.loads(task_data_csv.replace('$'+var, str(global_vars.get(var,''))))
+                            task_data_csv = task_data_csv.replace('$' + var, str(global_vars.get(var,'')))
 
-                        #task_data_list.append(eval(task_data_csv))
-                        
-                        task_data_list.append(task_data_csv)
+                        #task_data_list.append(eval(task_data_csv))                      
+                        task_data_list.append(json.loads(task_data_csv))
 
                     csv_line_count += 1
         else:
-            task_data_list.append(task_data)
+            task_data_str = json.dumps(task_data)
+            for var in global_vars :
+                task_data_str = task_data_str.replace('$' + var, str(global_vars.get(var,'')))
+            task_data_list.append(json.loads(task_data_str))
 
         #DEBUG POINT
         #for row in task_data_list:
