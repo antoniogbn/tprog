@@ -10,12 +10,12 @@ It uses equipment´s interfaces to interact with them in order to acomplish conf
 
 ## 1. Requirements :
 
-### Python :
+### 1.1 Python :
 ```
 Python 3.6.8 or higher
 ```
 
-### Libraries :
+### 1.2 Libraries :
 ```
 bcrypt==3.1.7
 bitarray==1.0.1
@@ -49,23 +49,23 @@ urllib3==1.25.6
 xmltodict==0.12.0
 ```
 
-## 1. Install
+## 2. Install
 
-1. **Clone the project to a folder on your system :**
+### 2.1. **Clone the project to a folder on your system :**
 ```
 git clone https://github.com/antoniogbn/tprog.git
 ```
 
-2. **Install required libraries :**
+### 2.2. **Install required libraries :**
 ```
 pip install -r requirements.txt
 ```
 
-## Howto
+## 3. Howto
 
 The steps below will guide how to use the TPROG 
 
-1. **Create tha YANG model file :**
+### 3.1. **Create tha YANG model file :**
 
 The YANG model must be based on equipment API format honouring the data hiehierarchy, once that´s created the [Pyang](https://github.com/mbj4668/pyang) is used to convert the model into python objects that will be later used on TPROG workflow.
  
@@ -104,7 +104,7 @@ module [modulename] {
 **Notes** : *- The module information inside of YANG model must be the same as the YANG file name also* 
            
 
-2. **Generate the python object from YANG model :**
+### 3.2. **Generate the python object from YANG model :**
 
 Once the YANG file is created,  command line below should be used to generate the python object class that later will ve used on TPROG workflow :
 
@@ -114,7 +114,7 @@ python tprog.cyang.py [yangfilename]
 
 
 
-3. **Prepare the YAML file with tasks data :**
+### 3.3. **Prepare the YAML file with tasks data :**
 
 The YAML file should have the tasks that will be performed when the TPROG is executed, it can contain one more multiple tasks entries that must follow the YAML format rules. The YAML file is read using library [Ruamel](https://pypi.org/project/ruamel.yaml/)
 
@@ -167,16 +167,16 @@ In the table below is listed the tags that are supported on YAML file also their
 |return      | Task return variable                                                              |  N   |  N   |  N  | 
 
 
-4. **Run TPROG in order to get tasks completed :**
+### 3.4. **Run TPROG in order to get tasks completed :**
 
 
 ```
 python tprog.py tasks.yaml
 ```
 
-## Examples :
+## 4. Examples :
 
-1. **Using TPROG with REST API :**
+### 4.1. **Using TPROG with REST API :**
 
 This example shows how to use TPROG to add customer and accounts information using REST API in a [PortaOne Softswitch](https://www.portaone.com/products/portaswitch) server.
 
@@ -286,7 +286,7 @@ RECEIVED >>>
 ```
 
 
-2. **Using TPROG with SOAP API :**
+### 4.2. **Using TPROG with SOAP API :**
 
 This example shows how to use TPROG to add Phones and Numbers  information using SOAP AXL API in a [Cisco CUCM](https://www.cisco.com/c/en/us/products/unified-communications/unified-communications-manager-callmanager/index.html) server.
 
@@ -353,7 +353,7 @@ Once YAML is complete call tprog main script to execute the tasks file with belo
 
 
 
-3. **Using TPROG with SSH :**
+### 4.3. **Using TPROG with SSH :**
 
 This example shows how to use TPROG to add dial-peer configuration using SSH command line instructions to a [Cisco Voice Gateway](https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucme/srnd/design/guide/cmesrnd/gatewy.html) .
 
@@ -377,7 +377,7 @@ The object classes files was generated inside **obj** folder, the next step will
 
 
 
-## About :
+## 5. About :
 
 The TPROG tool is the result of a MSc. study currently in course with [Universidade Federal Fluminense](http://mesc.sites.uff.br/)
 
