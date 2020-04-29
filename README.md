@@ -8,7 +8,7 @@ It uses equipment´s interfaces to interact with them in order to acomplish conf
 * [SSH](https://tools.ietf.org/html/rfc4253)
 
 
-## 1.Requirements :
+## 1. Requirements :
 
 ### Python :
 ```
@@ -49,7 +49,7 @@ urllib3==1.25.6
 xmltodict==0.12.0
 ```
 
-## 1.Install
+## 1. Install
 
 1. **Clone the project to a folder on your system :**
 ```
