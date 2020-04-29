@@ -8,7 +8,7 @@ It uses equipment´s interfaces to interact with them in order to acomplish conf
 * [SSH](https://tools.ietf.org/html/rfc4253)
 
 
-## Requirements :
+## 1.Requirements :
 
 ### Python :
 ```
@@ -49,7 +49,7 @@ urllib3==1.25.6
 xmltodict==0.12.0
 ```
 
-## Install
+## 1.Install
 
 1. **Clone the project to a folder on your system :**
 ```
@@ -290,14 +290,92 @@ RECEIVED >>>
 
 This example shows how to use TPROG to add Phones and Numbers  information using SOAP AXL API in a [Cisco CUCM](https://www.cisco.com/c/en/us/products/unified-communications/unified-communications-manager-callmanager/index.html) server.
 
-...
+Following the steps, on the first one the YANG file was created to serve as model to both API methods that will be called based on service API sctructure :
+
+- [add_customer](https://github.com/antoniogbn/tprog/blob/master/mdl/addPhone.yang)
+
+Then the object classes were created from their respectively YANG model using the follow commands:
+
+```
+(tprog) user@localhost:/dev/tprog$ python tprog.cyang.py addPhone
+pyang -f tree mdl/addPhone.yang
+module: addPhone
+  +--rw phone___
+     +--rw name___?             data
+     +--rw description___?      data
+     +--rw product___?          data
+     +--rw class___?            data
+     +--rw protocol___?         data
+     +--rw devicePoolName___?   data
+     +--rw lines___
+        +--rw line___
+           +--rw index___?   data
+           +--rw dirn___
+              +--rw pattern___?              data
+              +--rw routePartitionName___?   data
+```
+
+**note :**  *For the TPROG, the YANG files must use the presented format including "___" after the container and leaf names.*
+
+The object classes files were generated inside **obj** folder, then once that is completed, the next step will be to create the task YAML file, the example below shows the file with 2 tasks :
+
+```
+---
+task1:
+    type : soapaxl
+    action : addPhone
+    uri : 'https://apiserver:8443/axl/'
+    username : 'UsernameDemo'
+    password : 'PasswordDemo'
+    version : '8.5'
+    data :
+        phone : 
+          name : 
+          description : "Automation Demo Device"
+          product : "Cisco 7945"
+          class : "Phone"
+          protocol : "SCCP"
+          devicePoolName : "Default"
+          lines:
+            line:
+                index: '1'
+                dirn: 
+                    pattern: 552137525665
+                    routePartitionName: "Default_Partition"            
+
+```
+
+The task1 will call the server SOAP method **addPhone** to add the Phone device and it´s others parameters  like description, phone model, line number, etc.
+
+Once YAML is complete call tprog main script to execute the tasks file with below line :
+
+
+
 
 
 3. **Using TPROG with SSH :**
 
 This example shows how to use TPROG to add dial-peer configuration using SSH command line instructions to a [Cisco Voice Gateway](https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucme/srnd/design/guide/cmesrnd/gatewy.html) .
 
-...
+Following the steps, on the first one the YANG file was created to serve as model to both API methods that will be called based on service API sctructure :
+
+- [cisco_vg](https://github.com/antoniogbn/tprog/blob/master/mdl/cisco_vg.yang)
+
+In the next step the object classes were created from their respectively YANG models using the follow commands:
+
+```
+(tprog) user@localhost:/dev/tprog$ python tprog.cyang.py cisco_vg
+pyang -f tree mdl/cisco_vg.yang
+module: cisco_vg
+  +--rw cmd_list___?   data
+pyang --plugindir $PYBINDPLUGIN -f pybind mdl/cisco_vg.yang > obj/cisco_vg.py
+```
+**note :**  *For the TPROG, the YANG files must use the presented format including "___" after the container and leaf names.*
+
+The object classes files was generated inside **obj** folder, the next step will be to create the task YAML file, the example below shows the file with 2 tasks :
+
+
+
 
 ## About :
 
