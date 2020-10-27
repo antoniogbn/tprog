@@ -3,7 +3,7 @@ bitarray==1.0.1
 certifi==2019.9.11
 cffi==1.13.2
 chardet==3.0.4
-cryptography==2.8
+cryptography==3.2
 enum34==1.1.6
 future==0.18.2
 idna==2.8
